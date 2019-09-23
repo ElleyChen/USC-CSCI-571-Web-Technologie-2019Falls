@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HW3_cchen215_Chia-Yu Chen</title>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400i|Raleway:300,400,500,600|Work+Sans:300,400,500,600&display=swap');
+
+        @font-face {
+            font-family: Noto Serif;
+            src: url(fonts/Noto_Serif/NotoSerif-RegularItalic.ttf);
+        }
+        @font-face {
+            font-family: Work Sans;
+            src: url(fonts/Work_Sans/WorkSans-Light.ttf);
+        }
+        html {
+            overflow: hidden;
+        }
+        .container {
+            height: 100vh;
+            perspective: 1px;
+            transform-style: preserve-3d;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .topnav {
+            background-color: white;
+            color: gray;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            position: fixed;
+            width: 100%;
+
+            z-index: 2;
+        }
+        .grid-container {
+            display: grid;
+            grid-column-gap: 50px;
+            grid-template-columns: auto auto auto;
+            padding: 20px;
+        }
+        .grid-item {
+            font-size: 15px;
+            text-align: center;
+        }
+        .nav-link {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        /*parallel effect, reference:https://www.youtube.com/watch?v=ln5BWnYMSQA&feature=youtu.be*/
+        .bg-parallel-coffee2 {
+            width:100vw;
+            height: 85vh;
+            padding-top: 25vh;
+            box-sizing: border-box;
+            transform-style: preserve-3d;
+        }
+        .bg-parallel-coffee2::before {
+            background-image: url("coffee2.jpg");
+            background-size: cover;
+            position: absolute;
+            width:100vw;
+            height: 85vh;
+            padding-top: 25vh;
+            box-sizing: border-box;
+
+            content: "";
+            top:0;
+            left: 0;
+            z-index: -1;
+
+            transform: translateZ(-1px) scale(2);
+            z-index: -1;
+        }
+        /*parallel effect, reference:https://www.youtube.com/watch?v=ln5BWnYMSQA&feature=youtu.be*/
+        .bg-parallel-coffee1 {
+            width:100vw;
+            height: 100vh;
+            padding-top: 40vh;
+            box-sizing: border-box;
+            transform-style: preserve-3d;
+        }
+        .bg-parallel-coffee1::before {
+            background-image: url("coffee1.jpg");
+            position: absolute;
+            width:100vw;
+            height: 100vh;
+            padding-top: 40vh;
+            box-sizing: border-box;
+
+            content: "";
+            top:0;
+            left: 0;
+            z-index: -1;
+
+            transform: translateZ(-1px) scale(2);
+            z-index: -1;
+        }
+        .div1big {
+            margin:0px;
+            height:700px;
+            
+            z-index: 2;
+            position: relative;
+        }
+        .div3 {
+            margin: 0px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+
+            z-index: 2;
+            position: relative;
+        }
+        #divsmall {
+            background-color: white;
+            width: 550px;
+            height: 300px;
+            margin: auto;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+        #divsmall-container {
+            margin-top: 35px;
+            height: 230px;
+            margin-bottom: 35px;
+            overflow: hidden;
+        }
+        #divsmall-face {
+            display: inline-block; 
+            margin-top: -20px; 
+            margin-bottom: -27px;
+        }
+        img {
+            display: block;
+        }
+        #divsmall-word {
+            display: inline-block;
+            margin-left: 20px;
+            color: #48267c;
+        }
+        .title {
+            color: white;
+            font-family: 'Raleway', sans-serif;
+            padding-left: 40px;
+            padding-top: 300px;
+        }
+        .div1medium {
+            margin:auto;
+            height:200px;
+            padding: 200px 130px;
+            font-family: 'Raleway', sans-serif;
+
+            z-index: 2;
+            position: relative;
+        }
+        .div1medium-word {
+            width: 1090px;
+            margin: auto;
+        }
+        .div2info {
+            width: 400px;
+            height: 230px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            padding: 20px;
+        }
+        .div2info-table {
+            margin-bottom: 10px;
+            border: 1px solid #48267c; 
+            padding: 5px;
+        }
+        .div2info-table-button {
+            background-color: #48267c;
+            color: white;
+            margin-bottom: : 10px;
+            width: 90px;
+            text-align: center;
+            padding: 5px;
+            float: right;
+            font-family: 'Noto Serif', serif;
+        }
+        input[type=text] {
+            margin-bottom: 10px;
+            border: 1px solid #48267c; 
+            padding: 5px;
+            width: 388px;
+            color: #48267c;
+            font-size: 16px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+        }
+        input::placeholder {
+            color: #48267c;
+            opacity: 1; /* Firefox */
+        }
+        textarea::placeholder {
+            color: #48267c;
+            opacity: 1; /* Firefox */
+            vertical-align: text-top;
+        }
+        textarea {
+            margin-bottom: 10px;
+            border: 1px solid #48267c; 
+            padding: 5px;
+            width: 388px;
+            color: #48267c;
+            font-size: 16px;
+            height: 100px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            resize: none;
+        }
+    </style>
+</head>
+<body style="margin: 0px;">
+    <div class="topnav grid-container">
+        <div class="grid-item">
+            <span style="font-family: 'Noto Serif', serif; font-size: 25px; color:#48267c;"><i>Migi Bell</i></span>
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item" style="padding-top: 10px;">
+            <span class="nav-link">HOME</span>
+            <span class="nav-link">PORTFOLIO</span>
+            <span class="nav-link">ABOUT ME</span>
+            <span class="nav-link">CONTACT ME</span>
+        </div>
+    </div>
+    <div class="container">
+    <div class="bg-parallel-coffee2">
+        <div id="divsmall">
+            <div id="divsmall-container">
+                <div id="divsmall-face"><img src="face.jpg"></div>
+                <div id="divsmall-word">
+                    <span style="font-size: 20px; font-family: 'Noto Serif', serif;"><i>Migi Bell</i></span>
+                    <br><span style="font-size: 40px; font-family: 'Raleway', sans-serif; font-weight: 300;">FOOD</span>
+                    <br><span style="font-size: 60px; font-weight: bold;">STYLIST.</span>
+                    <br><span style="font-size: 50px; font-weight: bold;"> &ndash;&ndash;&ndash; </span>
+                    <br><span style="font-size: 20px; 'Raleway', sans-serif; font-weight: 300;">PORTFOLIO &rsaquo;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div1big div3">
+        <div class="title" style="background-color: #5098ba;">
+            <span>PROJECTS</span>
+            <br>
+            <h2 style="font-weight: bold;">PROJECTS &rsaquo;</h2>
+        </div>
+        <div class="title" style="background-color: #48267c;" >
+            <span>PROJECTS</span>
+            <br>
+            <h2>EDITORIAL &rsaquo;</h2>
+        </div>
+        <div class="title" style="background-color: #9a69c2;">
+            <span>PROJECTS</span>
+            <br>
+            <h2>INNOVATIVE &rsaquo;</h2>
+        </div>
+    </div>
+    <div class="bg-parallel-coffee1"></div>
+    <div class="div1medium" style="background-color: #48267c; color: white; ">
+        <div class="div1medium-word">
+            <span style="font-weight: 500;">&ndash; Hello &ndash;</span><br><br>
+            <span style="font-weight: 400; font-size: 50px;">Lorem ipsum dolor sit amet, consectrtur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+        </div>
+    </div>
+    <div class="div1medium"style="background-color: white; color:#48267c;">
+        <div style="width:1090px; margin: auto;">
+            <div class="div2info" style="display: inline-block; margin-right:170px;">
+                <div style="margin-top: -40px;">
+                    <span style="font-weight: 500;">&ndash; Get In Touch &ndash;</span><br><br>
+                    <span style="font-size: 40px;">Contact Me</span>
+                    <br>
+                    <span>700 Moery Francois Street, San Francisco, CA 94148</span>
+                    <br>
+                    <span>info@lorem.com | Tel:123-555-1212</span>
+                    <br><br><br><br><br><br><br><br>
+                    <div>&copy; 2023 by Migi Bell.</div>
+                </div>
+            </div>
+            <div class="div2info" style="display: inline-block; position: absolute;">
+                <div>
+                    <input type="text" id="name" placeholder="Name">
+                    <input type="text" id="email" placeholder="Email">
+                    <input type="text" id="phone" placeholder="Phone">
+                    <textarea placeholder="Type your message here ..." cols="30" rows="5"></textarea>
+                    <div class="div2info-table-button"><i>Submit</i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
